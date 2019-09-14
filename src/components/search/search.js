@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import { searchData } from "../../actions/actions";
-import { connect } from "react-redux";
-import "./search.scss";
+import React, { useState } from 'react';
+import { searchData } from '../../actions/actions';
+import { connect } from 'react-redux';
+import './search.scss';
 
 function Search(props) {
-  const [valueSelect, setSelect] = useState("All");
-  const [valueInput, setInput] = useState("");
+  const [valueSelect, setSelect] = useState('All');
+  const [valueInput, setInput] = useState('');
 
   const handleChangeSelect = event => {
     setSelect(event.target.value);
   };
 
   const handleChange = event => {
-    setInput(event.target.value.trim());
+    setInput(event.target.value);
   };
   const handleSubmit = e => {
     const { dataReducer } = props;
     e.preventDefault();
 
-    props.searchData({ dataReducer, value: { valueInput, valueSelect } });
+    props.searchData({
+      dataReducer,
+      value: { valueInput: valueInput.trim(), valueSelect },
+    });
   };
 
   return (
@@ -40,11 +43,11 @@ function Search(props) {
 
 const mapStateToProps = state => {
   return {
-    dataReducer: state.dataReducer
+    dataReducer: state.dataReducer,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchData }
+  { searchData },
 )(Search);

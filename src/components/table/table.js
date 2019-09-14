@@ -1,11 +1,9 @@
-import React from "react";
-import "./table.scss";
-import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import React from 'react';
+import './table.scss';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 function Table(props) {
-  debugger;
   return (
     <table>
       <thead>
@@ -21,7 +19,7 @@ function Table(props) {
         {props.dataReducer.members.map((e, i) => (
           <tr key={i}>
             <td>
-              {" "}
+              {' '}
               <Link className="logo" to={`/members/?id=${e.id}`}>
                 {e.id}
               </Link>
@@ -39,11 +37,11 @@ function Table(props) {
 
 const mapStateToProps = state => {
   return {
-    dataReducer: state.dataReducer
+    dataReducer: state.dataReducer,
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  {},
 )(Table);
